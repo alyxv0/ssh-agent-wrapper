@@ -25,7 +25,7 @@ an in memory database (simple array of struct pointers) with the current state o
 
 
 # Contribution
-Improvements and features suggestions are always welcome. Please create an issue for bigger changes. Since this is my first project which is worth to share in my opinion, I could need some help in how to organize this.
+Improvements and features suggestions are always welcome. Please create an issue for bigger changes.
 
 
 
