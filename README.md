@@ -1,6 +1,6 @@
 # sshad - Simple SSH-Agent database
 
-sshad (ssh-wrapper daemon) enables automatic execution of ssh-add with the correct IdentityFile from `~/.ssh/config` via resolution of 'Host'-Entries through sshac (ssh-wrapper client).
+sshad (ssh-agent wrapper daemon) enables automatic execution of ssh-add with the correct IdentityFile from `~/.ssh/config` via resolution of 'Host'-Entries through sshac (ssh-agent wrapper client).
 
 ## Content
 
