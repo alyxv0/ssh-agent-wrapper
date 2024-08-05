@@ -7,15 +7,17 @@ import (
 	"os/user"
 	"strings"
 
-	"github.com/alyxv/sshwd/pkg/sshw/client"
+	"github.com/alyxv/sshwd/pkg/sshac/client"
 )
 
 func main() {
 
-	if len(os.Args) < 1 {
+	if len(os.Args) < 2 {
 		log.Println("missing argument")
 		return
 	}
+
+	log.Println("Length:", len(os.Args))
 
 	host := os.Args[1]
 

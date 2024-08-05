@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/alyxv/sshwd/pkg/sshwd/daemon"
-	"github.com/alyxv/sshwd/pkg/sshwd/server"
+	"github.com/alyxv/sshwd/pkg/sshad/daemon"
+	"github.com/alyxv/sshwd/pkg/sshad/server"
 )
 
 func main() {

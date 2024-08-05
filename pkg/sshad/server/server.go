@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/alyxv/sshwd/pkg/sshwd/database"
+	"github.com/alyxv/sshwd/pkg/sshad/database"
 )
 
 type UnixSocketServer struct {
