@@ -5,6 +5,7 @@ sshad (ssh-agent wrapper daemon) enables automatic execution of ssh-add with the
 ## Content
 
 - [Features](#features)
+- [ToAdd](#toadd)
 - [Install](#install)
 - [Usage](#usage)
 - [Knowhow](#Knowhow)
@@ -12,12 +13,18 @@ sshad (ssh-agent wrapper daemon) enables automatic execution of ssh-add with the
 # Features
 - automatic Host-Entry recognition from `~/.ssh/config`
 - detection of cross-used keys in Host-Entries
+
+# ToAdd
 - regular ssh usage possible
 
 ## Install
 
-- sshad - `go install gitlab.com/mortytheshorty/ssh-wrapper/cmd/sshad`
-- sshad  -  `go install gitlab.com/mortytheshorty/ssh-wrapper/cmd/sshac`
+```
+    git clone https://github.com/mortytheshorty/ssh-agent-wrapper.git sshad
+    cd sshad
+    go install ./cmd/sshad
+    go install ./cmd/sshac
+```
 
 ## Knowhow
 `sshad` is running as the current user under `/home/$USER/.local/run/sshad`. On initialization it parses the content of the `~/.ssh/config` file for Host-Entries and builds
