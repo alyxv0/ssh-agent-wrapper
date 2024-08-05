@@ -2,10 +2,13 @@ package daemon
 
 import (
 	"fmt"
+	"io/fs"
 	"log"
 	"os"
+	"os/signal"
 	"os/user"
 	"strings"
+	"syscall"
 
 	"github.com/sevlyar/go-daemon"
 )
@@ -26,12 +29,39 @@ func NewDaemon(name string) (*Daemon, error) {
 		return nil, err
 	}
 
-	return &Daemon{
+	d := &Daemon{
+		Name: name,
 		PidFileName:  name + ".pid",
 		LogFileName:  name + ".log",
 		SockFileName: name + ".sock",
 		WorkDir:      strings.Join([]string{u.HomeDir, ".local", "run", name}, "/"),
-	}, nil
+	}
+
+	err = os.MkdirAll(d.WorkDir, fs.FileMode.Perm(0750))
+	if err != nil {
+		log.Fatalf("failed to create workdir '%v': %v\n", d.WorkDir, err)
+	}
+
+	return d, nil
+}
+
+func removeContents(dir string) error {
+    d, err := os.Open(dir)
+    if err != nil {
+        return err
+    }
+    defer d.Close()
+    names, err := d.Readdirnames(-1)
+    if err != nil {
+        return err
+    }
+    for _, name := range names {
+        err = removeContents(strings.Join([]string{dir, name}, "/"))
+        if err != nil {
+            return err
+        }
+    }
+    return nil
 }
 
 func (d *Daemon) Run(runf Runner) error {
@@ -56,7 +86,25 @@ func (d *Daemon) Run(runf Runner) error {
 	}
 	defer cntxt.Release()
 
+	c := make(chan os.Signal, 1)
+	signal.Notify(c,
+				// syscall.SIGHUP,
+				syscall.SIGINT,
+				syscall.SIGTERM,
+				// syscall.SIGQUIT
+			)
+	go func() {
+		s := <-c
+	
+		log.Printf("caught %v\n", s.String())
+		err = removeContents(d.WorkDir)
+		if err != nil {
+			log.Fatalf("failed to delete workdir on shutdown: %v", err)
+			os.Exit(1)
+		}
 
+		os.Exit(1)
+	}()
 	content, err := os.ReadFile(strings.Join([]string{d.WorkDir, d.PidFileName}, "/"))
 	if err != nil {
 		return fmt.Errorf("failed to read pid file content: %v", err)

@@ -12,7 +12,7 @@ import (
 
 func main() {
 
-	d, err := daemon.NewDaemon("sshwd")
+	d, err := daemon.NewDaemon("sshad")
 	if err != nil {
 		log.Fatal(err)
 	}

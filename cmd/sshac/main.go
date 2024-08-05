@@ -27,7 +27,7 @@ func main() {
 		return
 	}
 
-	sockPath := strings.Join([]string{u.HomeDir, ".local/run/sshwd/sshwd.sock"}, "/")
+	sockPath := strings.Join([]string{u.HomeDir, ".local/run/sshad/sshad.sock"}, "/")
 	c, err := client.NewClient(sockPath)
 	if err != nil {
 		log.Fatalf("client failed to connect to unix socket: %v\n", err)
