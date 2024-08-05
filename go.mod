@@ -1,4 +1,4 @@
-module github.com/alyxv/sshwd
+module github.com/mortytheshorty/ssh-wrapper
 
 go 1.22.5
 

@@ -7,7 +7,7 @@ import (
 	"os/user"
 	"strings"
 
-	"github.com/alyxv/sshwd/pkg/sshac/client"
+	"github.com/mortytheshorty/ssh-wrapper/pkg/sshac/client"
 )
 
 func main() {
