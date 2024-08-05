@@ -4,16 +4,12 @@ sshwd (ssh-wrapper daemon) enables automatic execution of ssh-add with the corre
 
 ## Content
 
+- [Features](#features)
 - [Install](#install)
 - [Usage](#usage)
 - [Knowhow](#Knowhow)
 
-## Knowhow
-`sshwd` is running as the current user under `/home/$USER/.local/run/sshwd`. On initialization it parses the content of the `~/.ssh/config` file for Host-Entries and builds
-an in memory database (simple array of struct pointers) with the current state of the corresponsing key files. The idea is to use sshw client program to connect via these Host-Entry-Names. It connects to the local unix socket from `sshwd` and sends it the host parameter given to it. `sshwd` responds either with the key files path or with OK if the key is already loaded. FAILED if they Host-Entry was not found. After a key is loaded, `sshwd` checks if the needed key is also used in another Host-Entry and if so, this HostKeyEntry will be marked as loaded too.
-
 # Features
-
 - automatic Host-Entry recognition from `~/.ssh/config`
 - detection of cross-used keys in Host-Entries
 - regular ssh usage possible
@@ -22,6 +18,11 @@ an in memory database (simple array of struct pointers) with the current state o
 
 - sshwd - `go install gitlab.com/alyxv/sshwd`
 - sshw  -  `go gitlab.com/alyxv/sshw`
+
+## Knowhow
+`sshwd` is running as the current user under `/home/$USER/.local/run/sshwd`. On initialization it parses the content of the `~/.ssh/config` file for Host-Entries and builds
+an in memory database (simple array of struct pointers) with the current state of the corresponsing key files. The idea is to use sshw client program to connect via these Host-Entry-Names. It connects to the local unix socket from `sshwd` and sends it the host parameter given to it. `sshwd` responds either with the key files path or with OK if the key is already loaded. FAILED if they Host-Entry was not found. After a key is loaded, `sshwd` checks if the needed key is also used in another Host-Entry and if so, this HostKeyEntry will be marked as loaded too.
+
 
 # Contribution
 Improvements and features suggestions are always welcome. Please create an issue for bigger changes. Since this is my first project which is worth to share in my opinion, I could need some help in how to organize this.
