@@ -20,8 +20,8 @@ an in memory database (simple array of struct pointers) with the current state o
 
 ## Install
 
-sshwd - `go install gitlab.com/alyxv/sshwd`
-sshw  -  `go gitlab.com/alyxv/sshw`
+- sshwd - `go install gitlab.com/alyxv/sshwd`
+- sshw  -  `go gitlab.com/alyxv/sshw`
 
 # Contribution
 Improvements and features suggestions are always welcome. Please create an issue for bigger changes. Since this is my first project which is worth to share in my opinion, I could need some help in how to organize this.
