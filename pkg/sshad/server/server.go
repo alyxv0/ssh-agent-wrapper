@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mortytheshorty/ssh-wrapper/pkg/sshad/database"
+	"github.com/mortytheshorty/ssh-agent-wrapper/pkg/sshad/database"
 )
 
 type UnixSocketServer struct {
@@ -60,7 +60,7 @@ func requestHandler(conn net.Conn, s *UnixSocketServer) {
 			wait = true
 		}
 	} else {
-		n = copy(buf, "FAILED")
+		n = copy(buf, "NOT FOUND")
 	}
 
 	_, err = conn.Write(buf[:n])

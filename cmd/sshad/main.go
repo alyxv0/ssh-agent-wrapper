@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mortytheshorty/ssh-wrapper/pkg/sshad/daemon"
-	"github.com/mortytheshorty/ssh-wrapper/pkg/sshad/server"
+	"github.com/mortytheshorty/ssh-agent-wrapper/pkg/sshad/daemon"
+	"github.com/mortytheshorty/ssh-agent-wrapper/pkg/sshad/server"
 )
 
 func main() {

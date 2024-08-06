@@ -7,7 +7,7 @@ import (
 	"os/user"
 	"strings"
 
-	"github.com/mortytheshorty/ssh-wrapper/pkg/sshac/client"
+	"github.com/mortytheshorty/ssh-agent-wrapper/pkg/sshac/client"
 )
 
 func main() {
@@ -16,8 +16,6 @@ func main() {
 		log.Println("missing argument")
 		return
 	}
-
-	log.Println("Length:", len(os.Args))
 
 	host := os.Args[1]
 
@@ -64,8 +62,13 @@ func main() {
 			log.Fatalf("failed to acknowledge daemon: %v", err)
 			return
 		}
-	} else if keypath != "OK" {
-		log.Fatalln("something failed")
+	} else if keypath == "NOT FOUND" {
+		log.Fatalln("not found")
+		return
+	}
+
+	if keypath != "OK" {
+		log.Fatalln("should received OK but received:", keypath)
 		return
 	}
 
