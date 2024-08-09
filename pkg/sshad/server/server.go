@@ -27,8 +27,6 @@ func NewUnixSocketServer(resetTime time.Duration) *UnixSocketServer {
 		log.Println("failed to initialize db:", err)
 	}
 
-	// db.Print()
-
 	return &UnixSocketServer{db: db, resetTime: resetTime}
 }
 
